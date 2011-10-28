@@ -1,0 +1,93 @@
+﻿<html>
+<head>
+<title>Télécommande Freebox V5 / V6</title>
+<style>
+body { white-space:nowarp;margin:0; padding:0; width:300px; height:500px; }
+#btnZoomIn, #btnZoomOut, #zoom {clear:both;display:block;width:42px;}
+</style>
+<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="Settings.js"></script>
+</head>
+<body>
+<fieldset>
+	<legend>Type de télécommande :</legend>
+	<div>
+		<input type="radio" id="version6" name="version" value="v6" checked="checked" />
+		<img src="v6.png" style="position:relative;top:16px;" alt="v6" title="Freebox Revolution v6" onclick="$('#version6').click();" >
+		<label for="version6">Freebox Révolution v6</label>
+	</div>
+	<div style="padding-bottom:16px;">
+		<input type="radio" id="version5" name="version" value="v5" />
+		<img src="v5.png" style="position:relative;top:16px;" alt="v5" title="Freebox HD v5" onclick="$('#version5').click();" />
+		<label for="version5">Freebox HD v5</label>
+	</div>
+</fieldset>
+<br/>
+<fieldset>
+	<legend>Piloter la Freebox Révolution Player / HD :</legend>
+	<div>
+		<div style="float:left;margin:4px;"><image src="drive.png" /></div>
+		<select id="boitier">
+			<option value="1">principale (fournie de base)</option>
+			<option value="2">secondaire (fournie avec l'option multi-tv)</option>
+		</select>
+	</div>
+</fieldset>
+<br/>
+<fieldset>
+	<legend>Code de la télécommande :</legend>
+	<div>
+		<div style="float:left;margin:4px;"><image src="key.png" /></div>
+		<input type="text" id="code" value="" />
+		<input type="button" value="Tester" onclick="checkOptions();" />
+		<div id="opt_mess_ok" style="display:none;clear:both;">
+			<div style="float:left;margin:4px;"><image src="tick-circle-frame.png" /></div>
+			<div>Tout semble fonctionner correctement.</div>
+		</div>
+		<div id="opt_mess_code" style="display:none;clear:both;">
+			<div style="float:left;margin:4px;"><image src="key--exclamation.png" /></div>
+			<div>Accès refusé,</div>
+			<div>veuillez vérifier le code de la télécommande.</div>
+		</div>
+		<div id="opt_mess_version" style="display:none;clear:both;">
+			<div style="float:left;margin:4px;"><image src="drive-upload.png" /></div>
+			<div>API non trouvée,</div>
+			<div>veuillez mettre à jour votre freebox.</div>
+		</div>
+		<div id="opt_mess_timeout" style="display:none;clear:both;">
+			<div style="float:left;margin:4px;"><image src="drive--exclamation.png" /></div>
+			<div>Pas de réponse au bout de 3 secondes,</div>
+			<div>veuillez vérifier le choix du boitier à piloter.</div>
+		</div>
+	</div>
+</fieldset>
+<br/>
+<fieldset>
+	<legend>Divers :</legend>
+	<table cellspacing="0" cellpadding="0"><tbody>
+		<tr>
+			<td valign="top">
+				<input type="checkbox" id="help" checked="checked" />
+				<label for="help" style="font-size: 12px;">Afficher les raccourcis clavier</label>
+			</td>
+			<td rowspan="3">
+				<div style="margin-left:10px;">
+					<input id="btnZoomIn"  type="button" value="˄"    onmousedown="doOnZoomIn(this, 'zoom', 'btnZoomOut');" />
+					<input id="zoom"       type="text"   value="2000" onclick="this.select();checkZoom(this);" onkeyup="checkZoom(this);" onchange="validateZoom(this, 'btnZoomIn', 'btnZoomOut');" maxlength="4" />
+					<input id="btnZoomOut" type="button" value="˅"    onmousedown="doOnZoomOut(this, 'zoom', 'btnZoomIn');" />
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" rowspan="2">
+				<label for="zoom" style="font-size: 12px;">Taille de la télécommande</label>
+				<div style="font-size: 12px;">(nombre de pixels en hauteur)</div>
+			</td>
+		</tr>
+	</tbody></table>
+</fieldset>
+<br/>
+<a href="http://www.ssofast.com/iop/gadget-windows-remote-freebox-v5" style="position:fixed;bottom:0;font-size: 12px;"><img src="information-frame.png" alt="" style="border:0;" /> Accéder au site pour toutes questions...</a>
+<br/>
+</body>
+</html>

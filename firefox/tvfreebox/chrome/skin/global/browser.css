@@ -1,0 +1,6 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+#tvfreebox-status { cursor: pointer; }
+#tvfreebox-popup1, #tvfreebox-popup2 { background:transparent;border:none; }
+#tvfreebox-toolbar-button{list-style-image: url("chrome://tvfreebox/skin/global/icon16.png");}
+#tvfreebox-toolbar-button.v5{list-style-image: url("chrome://tvfreebox/skin/v5/icon16.png");}
+#tvfreebox-toolbar-button.v6{list-style-image: url("chrome://tvfreebox/skin/v6/icon16.png");}

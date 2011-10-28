@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<gadget>
+  <name>Télécommande Freebox V5 / V6</name>
+  <namespace>com.freebox.remote</namespace>
+  <version>2.0.1</version>
+  <author name="iop">
+    <info url="ssofast.com/iop/gadget-windows-remote-freebox-v5" />
+    <logo src="icon.png" />
+  </author>
+  <copyright>Copyright © 2011</copyright>
+  <description>Télécommande Freebox V5 / V6</description>
+  <icons>
+    <icon height="48" width="48" src="icon.png" />
+  </icons>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="index.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="0.3" />
+    </host>
+  </hosts>
+  <version value="1.0.0.0" MinPlatformVersion="0.1" />
+</gadget>
