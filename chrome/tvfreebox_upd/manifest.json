@@ -1,0 +1,21 @@
+{
+	"name": "Telecommande Virtuelle Freebox Revolution/HD",
+	"description": "Permet de piloter votre Freebox Revolution V6 ou HD V5.",
+	"version": "3.0",
+	"manifest_version": 2,
+	"minimum_chrome_version": "33",
+	"app": {
+		"background": {
+			"scripts": ["background.js"]
+		}
+	},
+	"sockets": {
+		"udp": { "bind": "*", "send": "*" }
+	},
+	"permissions": [ "system.network" ],
+	"icons": { 
+		"16": "icon_16.png",
+		"48": "icon_48.png",
+		"128": "icon_128.png"
+	}
+}
