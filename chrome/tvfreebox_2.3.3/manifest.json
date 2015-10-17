@@ -1,0 +1,21 @@
+﻿{
+	"manifest_version": 2,
+	"name": "Télécommande Virtuelle Freebox Révolution/HD",
+	"version": "2.3.3",
+	"description": "Permet de piloter votre Freebox Révolution V6 ou HD V5.",
+	"icons": { 
+		 "16": "icon_16.png",
+		 "48": "icon_48.png",
+		"128": "icon_128.png"
+	},
+	"browser_action": {
+		"default_icon": "icon_16.png",
+		"default_popup": "Flyout.html"
+	},
+	"options_page": "Settings.html",
+	"homepage_url": "http://ssofast.com/iop/gadget-windows-remote-freebox-v5/",
+	"permissions": [
+	  "http://hd1.freebox.fr/",
+	  "http://hd2.freebox.fr/"
+	]
+ }

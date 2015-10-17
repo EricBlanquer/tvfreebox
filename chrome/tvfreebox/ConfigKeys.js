@@ -3,6 +3,9 @@ var keys;
 var defaultkeys = {normal:{8:'back',13:'ok',20:'swap',27:'power',32:'0',33:'prgm_inc',34:'prgm_dec',35:'blue',36:'green',37:'left',38:'up',39:'right',40:'down',45:'red',46:'yellow',48:'2,5',49:'7,6',50:'3,5',51:'1,7',52:'1,6',54:'1,5',55:'3,6',65:'2',66:'2,2',67:'2,3',68:'3',69:'3,2',70:'3,3',71:'4',72:'4,2',73:'4,3',74:'5',75:'5,2',76:'5,3',77:'6',78:'6,2',79:'6,3',80:'7',81:'7,2',82:'7,3',83:'7,4',84:'8',85:'8,2',86:'8,3',87:'9',88:'9,2',89:'9,3',90:'9,4',93:'list',96:'0',97:'1',98:'2',99:'3',100:'4',101:'5',102:'6',103:'7',104:'8',105:'9',106:'prgm_inc',107:'vol_inc',109:'vol_dec',110:'1',111:'prgm_dec',188:'1,2',192:'8,5',222:'tv',223:'1,4'},shift:{27:'mute',48:'0,2',49:'1,8',50:'2,4',51:'3,4',52:'4,4',53:'5,4',54:'6,4',55:'7,5',56:'8,4',57:'9,5',87:'play',88:'stop',65:'bwd',66:'bwd',70:'fwd',77:'mute',78:'next',80:'prev',81:'prev',83:'next',82:'rec',90:'fwd',96:'0,2',97:'1,8',98:'2,4',99:'3,4',100:'4,4',101:'5,4',102:'6,4',103:'7,5',104:'8,4',105:'9,5',188:'info',190:'mail',191:'help',192:'play',220:'stop',223:'pip'},ctrl:{17:'home'}};
 var labels = { 8: 'Retour', 9: 'Tabulation', 13: 'Entrée', 16: 'Shift', 17: 'Ctrl', 18: 'Alt', 19: 'Pause', 20: 'Caps lock', 27: 'Echape', 32: 'Espace', 33: 'Page haut', 34: 'Page bas', 35: 'Fin', 36: 'Début', 37: 'Fléche gauche', 38: 'Fléche haut', 39: 'Fléche droite', 40: 'Fléche bas', 45: 'Insertion', 46: 'Suppression', 59: '$', 91: 'Commande gauche', 92: 'Commande droite', 93: 'Menu contextuel', 96: 'Pavé num. 0', 97: 'Pavé num. 1', 98: 'Pavé num. 2', 99: 'Pavé num. 3', 100: 'Pavé num. 4', 101: 'Pavé num. 5', 102: 'Pavé num. 6', 103: 'Pavé num. 7', 104: 'Pavé num. 8', 105: 'Pavé num. 9', 106: 'Pavé num. *', 107: 'Pavé num. +', 109: 'Pavé num. -', 111: 'Pavé num. /', 112: 'F1', 113: 'F2', 114: 'F3', 115: 'F4', 116: 'F5', 117: 'F6', 118: 'F7', 119: 'F8', 120: 'F9', 121: 'F10', 122: 'F11', 123: 'F12', 145: 'Arrêt Défil', 172: 'Accueil', 173: 'Couper son', 174: 'Volume -', 175: 'Volume +', 177: 'Précédent', 179: 'Lecture', 180: 'Messagerie', 181: 'Media', 188: ',', 190: ';', 191: ':', 192: 'ù', 219: ')', 220: '*', 221: '^', 222: '²', 223: '!', 226: '<' };
 var labelsFR = { power: 'Alimentation', tv: 'AV/TV', list: 'Liste', red: 'Rouge', yellow: 'Jaune', green: 'Vert', blue: 'Bleu', back: 'Retour', swap: 'Swap', info: 'Info', mail: 'Message', help: 'Aide', pip: 'PIP', vol_inc: 'Volume Plus', vol_dec: 'Volume Moins', up: 'Haut', down: 'Bas', left: 'Gauche', right: 'Droite', ok: 'OK', prgm_inc: 'Programme Plus', prgm_dec: 'Programme Moins', mute: 'Couper le son', bwd: 'Ralentir', prev: 'Précédent', rec: 'Enregistrement', fwd: 'Accélérer', next: 'Suivant', play: 'Lecture', stop: 'Stop', home: 'Free', padUp: 'pad Haut', padDown: 'pad Bas', padLeft: 'pad Gauche', padRight: 'pad Droite' };
+function doOnMouseDown(element){
+	pressKey(element.getAttribute('key'));
+}
 function pressKey(key) {
 	myDump('pressKey ' + key);
 	var cdes = [];
@@ -292,9 +295,9 @@ function setKeysInPrefs() {
 	for(var type in keys) {
 		var txtType = [];
 		for(var code in keys[type]) {
-			txtType.push(code + ':\'' + keys[type][code] + '\'');
+			txtType.push('"' + code + '":"' + keys[type][code] + '"');
 		}
-		txtKeys.push(type + ':' + '{' + txtType.join(',') + '}');
+		txtKeys.push('"' + type + '":{' + txtType.join(',') + '}');
 	}
 	document.getElementById('resetConfigKeyLink').style.visibility = 'visible';
 	localStorage['keys'] = '[{' + txtKeys.join(',') + '}]';
@@ -337,6 +340,7 @@ function setTitle(enable) {
 		self.style.cursor = 'pointer';
 		if(enable) self.setAttribute('title', self.getAttribute('title_bak'));
 		else self.setAttribute('title', '');
+		self.onmousedown = function(){ doOnMouseDown(this); };
 	}
 }
 
@@ -379,7 +383,6 @@ function resetConfigKeys() {
 	localStorage['keys'] = '';
 	keys = defaultkeys;
 	pressKey();
-	//document.location.reload();
 }
 
 function hideConfigKeys() {
@@ -390,7 +393,11 @@ function hideConfigKeys() {
 function displayConfigKeys() {
 	var userkeys = localStorage['keys'];
 	if(userkeys) {
-		keys = eval(userkeys)[0];
+		try {
+			keys = JSON.parse(userkeys)[0];
+		} catch(e) {
+			keys = eval(userkeys)[0];
+		}
 		document.getElementById('resetConfigKeyLink').style.visibility = 'visible';
 	} else keys = defaultkeys;
 	document.getElementById('tvfreebox-prefs-pane1').style.display = 'none';

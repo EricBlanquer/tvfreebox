@@ -7,21 +7,21 @@
 #btnZoomIn, #btnZoomOut, #zoom {width:42px;}
 </style>
 </head>
-<body onload="getSettings();">
+<body>
 <h2>Options Télécommande Virtuelle Freebox Révolution V6 / HD V5</h2>
 <div style="width:450px;" id="tvfreebox-prefs-pane1">
 	<fieldset>
 		<legend>Nom/sélection de la configuration actuelle :</legend>
-		<input type="text" id="label" value="" onchange="setSettings();"  /><select id="labels" onchange="changeConfig(this);"></select>
+		<input type="text" id="label" value="" /><select id="labels"></select>
 	</fieldset><br/>
 	<fieldset>
 		<legend>Type de télécommande :</legend>
 		<div style="margin-top:-18px;padding-bottom:16px;">
-			<input type="radio" id="version6" name="version" value="v6" checked="checked" onchange="setSettings();" />
-			<img src="v6.png" style="position:relative;top:16px;" alt="v6" title="Freebox Revolution v6" onclick="document.getElementById('version6').checked='checked';" >
+			<input type="radio" id="version6" name="version" value="v6" checked="checked" />
+			<img id="img_version6" src="v6.png" style="position:relative;top:16px;" alt="v6" title="Freebox Revolution v6" >
 			<label for="version6">Freebox Révolution v6</label>
-			<input type="radio" id="version5" name="version" value="v5" onchange="setSettings();" />
-			<img src="v5.png" style="position:relative;top:16px;" alt="v5" title="Freebox HD v5" onclick="document.getElementById('version5').checked='checked';" />
+			<input type="radio" id="version5" name="version" value="v5" />
+			<img src="v5.png" id="img_version5" style="position:relative;top:16px;" alt="v5" title="Freebox HD v5" />
 			<label for="version5">Freebox HD v5</label>
 		</div>
 	</fieldset><br/>
@@ -29,7 +29,7 @@
 		<legend>Piloter la Freebox Révolution Player / Freebox HD :</legend>
 		<div>
 			<div style="float:left;margin:4px;"><image src="drive.png" /></div>
-			<select id="boitier" onchange="setSettings();">
+			<select id="boitier">
 				<option value="1">principale (fournie de base)</option>
 				<option value="2">secondaire (fournie avec l'option multi-tv)</option>
 			</select>
@@ -39,8 +39,8 @@
 		<legend>Code de la télécommande :</legend>
 		<div>
 			<div style="float:left;margin:4px;"><image src="key.png" /></div>
-			<input type="text" id="code" value="" onchange="setSettings();" />
-			<input type="button" value="Tester" onclick="checkOptions();" />
+			<input type="text" id="code" value="" />
+			<input type="button" id="btn_tester" value="Tester" />
 			<div id="opt_mess_ok" style="display:none;clear:both;">
 				<div style="float:left;margin:4px;"><image src="tick-circle-frame.png" /></div>
 				<div>Tout semble fonctionner correctement.</div>
@@ -65,28 +65,28 @@
 	<fieldset>
 		<legend>Divers :</legend>
 		<div>
-			<input type="checkbox" id="help" checked="checked" onchange="setSettings();" />
+			<input type="checkbox" id="help" checked="checked" />
 			<label for="help" style="font-size: 12px;">Afficher les raccourcis clavier</label>
 		</div>
 		<div>
 			<label for="zoom" style="font-size: 12px;">Taille de la télécommande</label>
-			<input id="zoom" type="number" min="200" max="9999" step="100" value="600" onclick="this.select();" onchange="if(this.value<200) this.value=200;setSettings();" style="width:50px"  />
+			<input id="zoom" type="number" min="200" max="9999" step="100" value="600" style="width:50px"  />
 			<span style="font-size: 12px;">(nombre de pixels en hauteur)</span>
 		</div>
 		<div>
-			<input type="checkbox" id="inpopup" onchange="setSettings();" />
+			<input type="checkbox" id="inpopup" />
 			<label for="inpopup" style="font-size: 12px;">Ouvrir dans une nouvelle fenêtre</label>
 		</div>
 	</fieldset><br/>
 	<fieldset>
 		<legend>Gérer plusieurs configurations :</legend>
 		<div style="text-align:center;">
-			<input type="button" value="Créer une autre configuration" onclick="newConfig();" />
-			<input type="button" value="Supprimer cette configuration" onclick="removeConfig();" />
+			<input type="button" id="btn_newconfig" value="Créer une autre configuration" />
+			<input type="button" id="btn_removeconfig" value="Supprimer cette configuration" />
 		</div>
 	</fieldset>
 	<fieldset style="border:none;">
-		<div style="text-align:right;"><a href="" onclick="displayConfigKeys();return false;">re-configurer les touches...</a></div>
+		<div style="text-align:right;"><a href="#" id="link_config_key">re-configurer les touches...</a></div>
 	</fieldset>
 	<a href="http://www.ssofast.com/iop/gadget-windows-remote-freebox-v5"><img src="information-frame.png" alt="" /> Accéder au site, pour toutes questions, bugs ou suggestions...</a>
 </div>
@@ -116,89 +116,90 @@
 		</fieldset>
 		<div style="float:left;"><img id="tvfreebox-popup1-image-v5" src="v5-face.png" usemap="#v5-remoteURLmap" style="margin-left:10px;border:none;" /></div>
 	</div>
-	<div id="resetConfigKeyLink" style="clear:both;visibility:hidden;"><a href="#" onclick="resetConfigKeys();return false;">configuration des touches par défaut</a></div>
-	<div><a href="#" onclick="hideConfigKeys();return false;">< retour...</a></div>
+	<div style="clear:both;"><input type="checkbox" id="alphakeys" /><label for="alphakeys">Utiliser directement les lettres du clavier (bêta)</label></div>
+	<div id="resetConfigKeyLink" style="clear:both;visibility:hidden;"><a href="#" id="link_reset_key">configuration des touches par défaut</a></div>
+	<div><a href="#" id="link_config_key_back">< retour...</a></div>
 	<map id="v5-remoteURLmap" name="v5-remoteURLmap">
-		<area shape="circle" coords="290,163,68" onmousedown="pressKey('red');" title_bak="Rouge (Insertion)" />
-		<area shape="circle" coords="171,285,68" onmousedown="pressKey('yellow');" title_bak="Jaune (Suppression)" />
-		<area shape="circle" coords="409,285,68" onmousedown="pressKey('green');" title_bak="Vert (Début)" />
-		<area shape="circle" coords="289,403,68" onmousedown="pressKey('blue');" title_bak="Bleu (Fin)" />
-		<area shape="circle" coords="100,598,63" onmousedown="pressKey('power');" title_bak="Alimentation (Echappe)" />
-		<area shape="circle" coords="475,598,63" onmousedown="pressKey('tv');" title_bak="TV (²)" />
-		<area shape="rect" coords="216,572,363,644" onmousedown="pressKey('list');" title_bak="Liste (Menu contextuel)" />
-		<area shape="rect" coords="52,668,161,735" onmousedown="pressKey('1');" title_bak="1 (Pavé numérique 1)" />
-		<area shape="rect" coords="173,668,282,735" onmousedown="pressKey('2');" title_bak="2 (Pavé numérique 2)" />
-		<area shape="rect" coords="295,668,404,735" onmousedown="pressKey('3');" title_bak="3 (Pavé numérique 3)" />
-		<area shape="rect" coords="52,748,161,815" onmousedown="pressKey('4');" title_bak="4 (Pavé numérique 4)" />
-		<area shape="rect" coords="173,748,282,815" onmousedown="pressKey('5');" title_bak="5 (Pavé numérique 5)" />
-		<area shape="rect" coords="295,748,404,815" onmousedown="pressKey('6');" title_bak="6 (Pavé numérique 6)" />
-		<area shape="rect" coords="52,828,161,895" onmousedown="pressKey('7');" title_bak="7 (Pavé numérique 7)" />
-		<area shape="rect" coords="173,828,282,895" onmousedown="pressKey('8');" title_bak="8 (Pavé numérique 8)" />
-		<area shape="rect" coords="295,828,404,895" onmousedown="pressKey('9');" title_bak="9 (Pavé numérique 9)" />
-		<area shape="rect" coords="52,908,161,975" onmousedown="pressKey('back');" title_bak="Retour" />
-		<area shape="rect" coords="173,908,282,975" onmousedown="pressKey('0');" title_bak="0 (Pavé numérique 0)" />
-		<area shape="rect" coords="295,908,404,975" onmousedown="pressKey('swap');" title_bak="Swap (Caps lock)" />
-		<area shape="rect" coords="417,668,526,735" onmousedown="pressKey('info');" title_bak="Info (Shift ,)" />
-		<area shape="rect" coords="417,748,526,815" onmousedown="pressKey('mail');" title_bak="Message (Shift ;)" />
-		<area shape="rect" coords="417,828,526,895" onmousedown="pressKey('help');" title_bak="Aide (Shift :)" />
-		<area shape="rect" coords="417,908,526,975" onmousedown="pressKey('pip');" title_bak="PIP (Shift !)" />
-		<area shape="rect" coords="52,1048,128,1155" onmousedown="pressKey('vol_inc');" title_bak="Volume Plus (Pavé numérique +)" />
-		<area shape="rect" coords="52,1184,128,1291" onmousedown="pressKey('vol_dec');" title_bak="Volume Moins (Pavé numérique -)" />
-		<area shape="rect" coords="447,1048,523,1155" onmousedown="pressKey('prgm_inc');" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
-		<area shape="rect" coords="447,1184,523,1291" onmousedown="pressKey('prgm_dec');" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
-		<area shape="rect" coords="245,1126,328,1211" onmousedown="pressKey('ok');" title_bak="OK (Entrée)" />
-		<area shape="rect" coords="44,1334,156,1414" onmousedown="pressKey('mute');" title_bak="Couper le son (Shift M)" />
-		<area shape="rect" coords="44,1432,156,1512" onmousedown="pressKey('bwd');" title_bak="Ralentir (Shift A)" />
-		<area shape="rect" coords="44,1529,156,1609" onmousedown="pressKey('prev');" title_bak="Précédent (Shift Q)" />
-		<area shape="rect" coords="417,1334,529,1414" onmousedown="pressKey('rec');" title_bak="Enregistrement (Shift R)" />
-		<area shape="rect" coords="417,1432,529,1512" onmousedown="pressKey('fwd');" title_bak="Accélérer (Shift Z)" />
-		<area shape="rect" coords="417,1529,529,1609" onmousedown="pressKey('next');" title_bak="Suivant (Shift S)" />
-		<area shape="rect" coords="174,1465,274,1574" onmousedown="pressKey('play');" title_bak="Lecture (Shift W)" />
-		<area shape="rect" coords="299,1465,399,1574" onmousedown="pressKey('stop');" title_bak="Stop (Shift X)" />
-		<area shape="rect" coords="198,1334,375,1444" onmousedown="pressKey('home');" title_bak="Free (Ctrl)" />
-		<area shape="rect" coords="250,1717,330,1813" onmousedown="pressKey('padUp');" title_bak="" />
-		<area shape="rect" coords="330,1814,426,1894" onmousedown="pressKey('padRight');" title_bak="" />
-		<area shape="rect" coords="250,1894,330,1990" onmousedown="pressKey('padDown');" title_bak="" />
-		<area shape="rect" coords="154,1814,250,1894" onmousedown="pressKey('padLeft');" title_bak="" />
-		<area shape="poly" coords="146,1027,245,1126,328,1126,430,1027" onmousedown="pressKey('up');" title_bak="Haut (Fléche haut)" />
-		<area shape="poly" coords="146,1312,245,1211,328,1211,436,1312" onmousedown="pressKey('down');" title_bak="Bas (Fléche bas)" />
-		<area shape="poly" coords="146,1027,245,1126,245,1211,146,1312" onmousedown="pressKey('left');" title_bak="Gauche (Fléche gauche)" />
-		<area shape="poly" coords="430,1027,328,1126,328,1211,436,1312" onmousedown="pressKey('right');" title_bak="Droite (Fléche droite)" />
-		<area shape="poly" coords="85,1737,74,1713,74,1685,89,1657,112,1637,139,1630,166,1632,187,1643,150,1666,112,1699" onmousedown="pressKey('start');" title_bak="" />
-		<area shape="poly" coords="83,413,75,432,76,463,96,497,129,515,163,514,183,503,156,486,127,464,108,443" onmousedown="pressKey('select');" title_bak="" />
+		<area shape="circle" coords="290,163,68" key="red" title_bak="Rouge (Insertion)" />
+		<area shape="circle" coords="171,285,68" key="yellow" title_bak="Jaune (Suppression)" />
+		<area shape="circle" coords="409,285,68" key="green" title_bak="Vert (Début)" />
+		<area shape="circle" coords="289,403,68" key="blue" title_bak="Bleu (Fin)" />
+		<area shape="circle" coords="100,598,63" key="power" title_bak="Alimentation (Echappe)" />
+		<area shape="circle" coords="475,598,63" key="tv" title_bak="TV (²)" />
+		<area shape="rect" coords="216,572,363,644" key="list" title_bak="Liste (Menu contextuel)" />
+		<area shape="rect" coords="52,668,161,735" key="1" title_bak="1 (Pavé numérique 1)" />
+		<area shape="rect" coords="173,668,282,735" key="2" title_bak="2 (Pavé numérique 2)" />
+		<area shape="rect" coords="295,668,404,735" key="3" title_bak="3 (Pavé numérique 3)" />
+		<area shape="rect" coords="52,748,161,815" key="4" title_bak="4 (Pavé numérique 4)" />
+		<area shape="rect" coords="173,748,282,815" key="5" title_bak="5 (Pavé numérique 5)" />
+		<area shape="rect" coords="295,748,404,815" key="6" title_bak="6 (Pavé numérique 6)" />
+		<area shape="rect" coords="52,828,161,895" key="7" title_bak="7 (Pavé numérique 7)" />
+		<area shape="rect" coords="173,828,282,895" key="8" title_bak="8 (Pavé numérique 8)" />
+		<area shape="rect" coords="295,828,404,895" key="9" title_bak="9 (Pavé numérique 9)" />
+		<area shape="rect" coords="52,908,161,975" key="back" title_bak="Retour" />
+		<area shape="rect" coords="173,908,282,975" key="0" title_bak="0 (Pavé numérique 0)" />
+		<area shape="rect" coords="295,908,404,975" key="swap" title_bak="Swap (Caps lock)" />
+		<area shape="rect" coords="417,668,526,735" key="info" title_bak="Info (Shift ,)" />
+		<area shape="rect" coords="417,748,526,815" key="mail" title_bak="Message (Shift ;)" />
+		<area shape="rect" coords="417,828,526,895" key="help" title_bak="Aide (Shift :)" />
+		<area shape="rect" coords="417,908,526,975" key="pip" title_bak="PIP (Shift !)" />
+		<area shape="rect" coords="52,1048,128,1155" key="vol_inc" title_bak="Volume Plus (Pavé numérique +)" />
+		<area shape="rect" coords="52,1184,128,1291" key="vol_dec" title_bak="Volume Moins (Pavé numérique -)" />
+		<area shape="rect" coords="447,1048,523,1155" key="prgm_inc" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
+		<area shape="rect" coords="447,1184,523,1291" key="prgm_dec" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
+		<area shape="rect" coords="245,1126,328,1211" key="ok" title_bak="OK (Entrée)" />
+		<area shape="rect" coords="44,1334,156,1414" key="mute" title_bak="Couper le son (Shift M)" />
+		<area shape="rect" coords="44,1432,156,1512" key="bwd" title_bak="Ralentir (Shift A)" />
+		<area shape="rect" coords="44,1529,156,1609" key="prev" title_bak="Précédent (Shift Q)" />
+		<area shape="rect" coords="417,1334,529,1414" key="rec" title_bak="Enregistrement (Shift R)" />
+		<area shape="rect" coords="417,1432,529,1512" key="fwd" title_bak="Accélérer (Shift Z)" />
+		<area shape="rect" coords="417,1529,529,1609" key="next" title_bak="Suivant (Shift S)" />
+		<area shape="rect" coords="174,1465,274,1574" key="play" title_bak="Lecture (Shift W)" />
+		<area shape="rect" coords="299,1465,399,1574" key="stop" title_bak="Stop (Shift X)" />
+		<area shape="rect" coords="198,1334,375,1444" key="home" title_bak="Free (Ctrl)" />
+		<area shape="rect" coords="250,1717,330,1813" key="padUp" title_bak="" />
+		<area shape="rect" coords="330,1814,426,1894" key="padRight" title_bak="" />
+		<area shape="rect" coords="250,1894,330,1990" key="padDown" title_bak="" />
+		<area shape="rect" coords="154,1814,250,1894" key="padLeft" title_bak="" />
+		<area shape="poly" coords="146,1027,245,1126,328,1126,430,1027" key="up" title_bak="Haut (Fléche haut)" />
+		<area shape="poly" coords="146,1312,245,1211,328,1211,436,1312" key="down" title_bak="Bas (Fléche bas)" />
+		<area shape="poly" coords="146,1027,245,1126,245,1211,146,1312" key="left" title_bak="Gauche (Fléche gauche)" />
+		<area shape="poly" coords="430,1027,328,1126,328,1211,436,1312" key="right" title_bak="Droite (Fléche droite)" />
+		<area shape="poly" coords="85,1737,74,1713,74,1685,89,1657,112,1637,139,1630,166,1632,187,1643,150,1666,112,1699" key="start" title_bak="" />
+		<area shape="poly" coords="83,413,75,432,76,463,96,497,129,515,163,514,183,503,156,486,127,464,108,443" key="select" title_bak="" />
 	</map>
 	<map id="v6-remoteURLmap" name="v6-remoteURLmap">
-	<area shape="rect" coords="0,0,218,215" onmousedown="pressKey('tv');" title_bak="AV (²)" />
-	<area shape="rect" coords="436,0,654,215" onmousedown="pressKey('power');" title_bak="Alimentation (Echappe)" />
-	<area shape="rect" coords="0,215,218,430" onmousedown="pressKey('1');" title_bak="1 (Pavé numérique 1)" />
-	<area shape="rect" coords="218,215,436,430" onmousedown="pressKey('2');" title_bak="2 (Pavé numérique 2)" />
-	<area shape="rect" coords="436,215,654,430" onmousedown="pressKey('3');" title_bak="3 (Pavé numérique 3)" />
-	<area shape="rect" coords="0,430,218,645" onmousedown="pressKey('4');" title_bak="4 (Pavé numérique 4)" />
-	<area shape="rect" coords="218,430,436,645" onmousedown="pressKey('5');" title_bak="5 (Pavé numérique 5)" />
-	<area shape="rect" coords="436,430,654,645" onmousedown="pressKey('6');" title_bak="6 (Pavé numérique 6)" />
-	<area shape="rect" coords="0,645,218,860" onmousedown="pressKey('7');" title_bak="7 (Pavé numérique 7)" />
-	<area shape="rect" coords="218,645,436,860" onmousedown="pressKey('8');" title_bak="8 (Pavé numérique 8)" />
-	<area shape="rect" coords="436,645,654,860" onmousedown="pressKey('9');" title_bak="9 (Pavé numérique 9)" />
-	<area shape="rect" coords="218,860,436,1075" onmousedown="pressKey('0');" title_bak="0 (Pavé numérique 0)" />
-	<area shape="rect" coords="0,1075,218,1290" onmousedown="pressKey('red');" title_bak="Rouge (Insertion)" />
-	<area shape="rect" coords="218,1075,436,1290" onmousedown="pressKey('up');" title_bak="Haut (Fléche haut)" />
-	<area shape="rect" coords="436,1075,654,1290" onmousedown="pressKey('blue');" title_bak="Bleu (Fin)" />
-	<area shape="rect" coords="0,1290,218,1505" onmousedown="pressKey('left');" title_bak="Gauche (Fléche gauche)" />
-	<area shape="rect" coords="218,1290,436,1505" onmousedown="pressKey('ok');" title_bak="OK (Entrée)" />
-	<area shape="rect" coords="436,1290,654,1505" onmousedown="pressKey('right');" title_bak="Droite (Fléche droite)" />
-	<area shape="rect" coords="0,1505,218,1720" onmousedown="pressKey('green');" title_bak="Vert (Début)" />
-	<area shape="rect" coords="218,1505,436,1720" onmousedown="pressKey('down');" title_bak="Bas (Fléche bas)" />
-	<area shape="rect" coords="436,1505,654,1720" onmousedown="pressKey('yellow');" title_bak="Jaune (Suppression)" />
-	<area shape="rect" coords="0,1720,654,1935" onmousedown="pressKey('home');" title_bak="Free (Ctrl)" />
-	<area shape="rect" coords="0,1935,218,2150" onmousedown="pressKey('vol_inc');" title_bak="Volume Plus (Pavé numérique +)" />
-	<area shape="rect" coords="218,1935,436,2150" onmousedown="pressKey('mute');" title_bak="Couper le son (Shift M)" />
-	<area shape="rect" coords="436,1935,654,2150" onmousedown="pressKey('prgm_inc');" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
-	<area shape="rect" coords="0,2150,218,2365" onmousedown="pressKey('vol_dec');" title_bak="Volume Moins (Pavé numérique -)" />
-	<area shape="rect" coords="218,2150,436,2365" onmousedown="pressKey('rec');" title_bak="Enregistrement (Shift R)" />
-	<area shape="rect" coords="436,2150,654,2365" onmousedown="pressKey('prgm_dec');" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
-	<area shape="rect" coords="0,2365,218,2580" onmousedown="pressKey('bwd');" title_bak="Ralentir (Shift A)" />
-	<area shape="rect" coords="218,2365,436,2580" onmousedown="pressKey('play');" title_bak="Lecture (Shift W)" />
-	<area shape="rect" coords="436,2365,654,2580" onmousedown="pressKey('fwd');" title_bak="Accélérer (Shift Z)" />
+	<area shape="rect" coords="0,0,218,215" key="tv" title_bak="AV (²)" />
+	<area shape="rect" coords="436,0,654,215" key="power" title_bak="Alimentation (Echappe)" />
+	<area shape="rect" coords="0,215,218,430" key="1" title_bak="1 (Pavé numérique 1)" />
+	<area shape="rect" coords="218,215,436,430" key="2" title_bak="2 (Pavé numérique 2)" />
+	<area shape="rect" coords="436,215,654,430" key="3" title_bak="3 (Pavé numérique 3)" />
+	<area shape="rect" coords="0,430,218,645" key="4" title_bak="4 (Pavé numérique 4)" />
+	<area shape="rect" coords="218,430,436,645" key="5" title_bak="5 (Pavé numérique 5)" />
+	<area shape="rect" coords="436,430,654,645" key="6" title_bak="6 (Pavé numérique 6)" />
+	<area shape="rect" coords="0,645,218,860" key="7" title_bak="7 (Pavé numérique 7)" />
+	<area shape="rect" coords="218,645,436,860" key="8" title_bak="8 (Pavé numérique 8)" />
+	<area shape="rect" coords="436,645,654,860" key="9" title_bak="9 (Pavé numérique 9)" />
+	<area shape="rect" coords="218,860,436,1075" key="0" title_bak="0 (Pavé numérique 0)" />
+	<area shape="rect" coords="0,1075,218,1290" key="red" title_bak="Rouge (Insertion)" />
+	<area shape="rect" coords="218,1075,436,1290" key="up" title_bak="Haut (Fléche haut)" />
+	<area shape="rect" coords="436,1075,654,1290" key="blue" title_bak="Bleu (Fin)" />
+	<area shape="rect" coords="0,1290,218,1505" key="left" title_bak="Gauche (Fléche gauche)" />
+	<area shape="rect" coords="218,1290,436,1505" key="ok" title_bak="OK (Entrée)" />
+	<area shape="rect" coords="436,1290,654,1505" key="right" title_bak="Droite (Fléche droite)" />
+	<area shape="rect" coords="0,1505,218,1720" key="green" title_bak="Vert (Début)" />
+	<area shape="rect" coords="218,1505,436,1720" key="down" title_bak="Bas (Fléche bas)" />
+	<area shape="rect" coords="436,1505,654,1720" key="yellow" title_bak="Jaune (Suppression)" />
+	<area shape="rect" coords="0,1720,654,1935" key="home" title_bak="Free (Ctrl)" />
+	<area shape="rect" coords="0,1935,218,2150" key="vol_inc" title_bak="Volume Plus (Pavé numérique +)" />
+	<area shape="rect" coords="218,1935,436,2150" key="mute" title_bak="Couper le son (Shift M)" />
+	<area shape="rect" coords="436,1935,654,2150" key="prgm_inc" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
+	<area shape="rect" coords="0,2150,218,2365" key="vol_dec" title_bak="Volume Moins (Pavé numérique -)" />
+	<area shape="rect" coords="218,2150,436,2365" key="rec" title_bak="Enregistrement (Shift R)" />
+	<area shape="rect" coords="436,2150,654,2365" key="prgm_dec" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
+	<area shape="rect" coords="0,2365,218,2580" key="bwd" title_bak="Ralentir (Shift A)" />
+	<area shape="rect" coords="218,2365,436,2580" key="play" title_bak="Lecture (Shift W)" />
+	<area shape="rect" coords="436,2365,654,2580" key="fwd" title_bak="Accélérer (Shift Z)" />
 	</map>
 </div>
 </body>
