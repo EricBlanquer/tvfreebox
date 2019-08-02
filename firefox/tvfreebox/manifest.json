@@ -1,0 +1,22 @@
+{
+    "browser_action": {
+        "browser_style": true,
+        "default_title": "Télécommande Virtuelle Freebox Delta v7 / Révolution v6 / HD v5",
+        "default_popup": "tvfreebox.html",
+        "default_icon": {
+            "48": "icon.png"
+        }
+    },
+    "icons": {
+        "48": "icon.png"
+    },
+    "options_ui": {
+        "page": "options.html"
+    },
+    "permissions": ["storage"],
+    "description": "Après avoir configuré votre code de télécommande dans les options de ce module complémentaire, un clic sur l'icone de la télécommande visible dans la barre des modules fait apparait une télécommande en bas à droite de la fenêtre de Firefox. Celle-ci permet de piloter votre Freebox Delta v7 / Révolution v6 ou HD v5.",
+    "homepage_url": "http://blanquer.org/freebox",
+    "manifest_version": 2,
+    "name": "Télécommande Freebox Delta / Révolution / HD",
+    "version": "4"
+}

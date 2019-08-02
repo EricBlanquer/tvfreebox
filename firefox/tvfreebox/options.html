@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>fieldset{border-radius:10px}</style>
+  </head>
+<body>
+    <fieldset>
+        <legend>Type de télécommande :</legend>
+            <div style="float:left">
+                <input type="radio" id="tvfreebox_version_v7" name="tvfreebox_version" value="v7" checked="checked" />
+                <label for="tvfreebox_version_v7"><img src="skin/v7/option.png" /><br/>Freebox Delta</label>
+            </div>
+            <div style="float:left;margin-left:30px">
+                <input type="radio" id="tvfreebox_version_v6" name="tvfreebox_version" value="v6" />
+                <label for="tvfreebox_version_v6"><img src="skin/v6/option.png" /><br/>Freebox Révolution</label>
+            </div>
+            <div style="float:left;margin-left:30px">
+                <input type="radio" id="tvfreebox_version_v5" name="tvfreebox_version" value="v5" />
+                <label for="tvfreebox_version_v5"><img src="skin/v5/option.png" /><br/>Freebox HD</label>
+            </div>
+    </fieldset>
+    <fieldset>
+        <legend>Piloter la Freebox Delta / Révolution / HD :</legend>
+        <img src="skin/global/drive.png" />
+        <select id="tvfreebox_boitier">
+            <option value="0">Delta/autre</option>
+            <option value="1">Révolution/HD principale (fournie de base)</option>
+            <option value="2">Révolution/HD secondaire (fournie avec l'option multi-tv)</option>
+        </select>
+        <div id="tvfreebox_boitier_custom_zone" style="margin-top:3px">
+            URL <input id="tvfreebox_boitier_custom" type="text" value="http://freebox-player.home" size="25" />/pub/remote_control<br/>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Code de la télécommande :</legend>
+        <img src="skin/global/key.png" />
+        <input type="text" id="tvfreebox_code" />
+        <button id="tvfreebox_code_test">Tester</button>
+        <div id="tvfreebox_opt_mess_ok" style="display:none;">
+            <img src="skin/global/tick-circle-frame.png" />
+            Tout semble fonctionner correctement.
+            <div id="tvfreebox_opt_mess_ok2" style="display:none;">
+                Toutefois la réponse de la Freebox n'était pas celle attendue.
+                <a href="https://dev.freebox.fr/bugs/task/27992" class="text-link">https://dev.freebox.fr/bugs/task/27992</a>
+            </div>
+        </div>
+        <div id="tvfreebox_opt_mess_code" style="display:none;">
+            <img src="skin/global/key--exclamation.png" /> Accès refusé<br/>
+            veuillez vérifier le code de la télécommande.
+        </div>
+        <div id="tvfreebox_opt_mess_version" style="display:none;">
+            <img src="skin/global/drive-upload.png" /> API non trouvée,<br/>
+            veuillez mettre à jour votre freebox.
+        </div>
+        <div id="tvfreebox_opt_mess_timeout" style="display:none;">
+            <img src="skin/global/drive--exclamation.png" />
+            Pas de réponse au bout de 3 secondes,<br/>
+            veuillez vérifier le choix du boitier à piloter.
+        </div>
+    </fieldset>
+    <fieldset align="left">
+        <legend>Divers :</legend>
+        <input type="checkbox" id="tvfreebox_help" checked="checked" />
+        <label for="tvfreebox_help">Afficher les raccourcis clavier</label>
+        <div>
+            Taille de la télécommande
+            <input type="number" id="tvfreebox_zoom" min="0" max="600" value="600" style="width:50px" />
+            pixels en hauteur
+        </div>
+    </fieldset>
+    <script src="tvfreebox_options.js"></script>
+</body >
+</html>

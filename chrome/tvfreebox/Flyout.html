@@ -3,90 +3,125 @@
 <title>Télécommande Virtuelle Freebox Révolution V6 / HD V5</title>
 <script type="text/javascript" src="Flyout.js"></script>
 </head>
-<body style="margin:0;padding:0;">
-<img id="v5-bodyBackground" src="v5-face.png" border="0" usemap="#v5-remoteURLmap" style="display:none;" />
-<img id="v6-bodyBackground" src="v6-face.png" border="0" usemap="#v6-remoteURLmap" style="display:none;" />
-<map id="v5-remoteURLmap" name="v5-remoteURLmap">
-	<area shape="circle" coords="290,163,68" key="red" title_bak="Rouge (Insertion)" />
-	<area shape="circle" coords="171,285,68" key="yellow" title_bak="Jaune (Suppression)" />
-	<area shape="circle" coords="409,285,68" key="green" title_bak="Vert (Début)" />
-	<area shape="circle" coords="289,403,68" key="blue" title_bak="Bleu (Fin)" />
-	<area shape="circle" coords="100,598,63" key="power" title_bak="Alimentation (Echappe)" />
-	<area shape="circle" coords="475,598,63" key="tv" title_bak="TV (²)" />
-	<area shape="rect" coords="216,572,363,644" key="list" title_bak="Liste (Menu contextuel)" />
-	<area shape="rect" coords="52,668,161,735" key="1" title_bak="1 (Pavé numérique 1)" />
-	<area shape="rect" coords="173,668,282,735" key="2" title_bak="2 (Pavé numérique 2)" />
-	<area shape="rect" coords="295,668,404,735" key="3" title_bak="3 (Pavé numérique 3)" />
-	<area shape="rect" coords="52,748,161,815" key="4" title_bak="4 (Pavé numérique 4)" />
-	<area shape="rect" coords="173,748,282,815" key="5" title_bak="5 (Pavé numérique 5)" />
-	<area shape="rect" coords="295,748,404,815" key="6" title_bak="6 (Pavé numérique 6)" />
-	<area shape="rect" coords="52,828,161,895" key="7" title_bak="7 (Pavé numérique 7)" />
-	<area shape="rect" coords="173,828,282,895" key="8" title_bak="8 (Pavé numérique 8)" />
-	<area shape="rect" coords="295,828,404,895" key="9" title_bak="9 (Pavé numérique 9)" />
-	<area shape="rect" coords="52,908,161,975" key="back" title_bak="Retour" />
-	<area shape="rect" coords="173,908,282,975" key="0" title_bak="0 (Pavé numérique 0)" />
-	<area shape="rect" coords="295,908,404,975" key="swap" title_bak="Swap (Caps lock)" />
-	<area shape="rect" coords="417,668,526,735" key="info" title_bak="Info (Shift ,)" />
-	<area shape="rect" coords="417,748,526,815" key="mail" title_bak="Message (Shift ;)" />
-	<area shape="rect" coords="417,828,526,895" key="help" title_bak="Aide (Shift :)" />
-	<area shape="rect" coords="417,908,526,975" key="pip" title_bak="PIP (Shift !)" />
-	<area shape="rect" coords="52,1048,128,1155" key="vol_inc" title_bak="Volume Plus (Pavé numérique +)" />
-	<area shape="rect" coords="52,1184,128,1291" key="vol_dec" title_bak="Volume Moins (Pavé numérique -)" />
-	<area shape="rect" coords="447,1048,523,1155" key="prgm_inc" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
-	<area shape="rect" coords="447,1184,523,1291" key="prgm_dec" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
-	<area shape="rect" coords="245,1126,328,1211" key="ok" title_bak="OK (Entrée)" />
-	<area shape="rect" coords="44,1334,156,1414" key="mute" title_bak="Couper le son (Shift M)" />
-	<area shape="rect" coords="44,1432,156,1512" key="bwd" title_bak="Ralentir (Shift A)" />
-	<area shape="rect" coords="44,1529,156,1609" key="prev" title_bak="Précédent (Shift Q)" />
-	<area shape="rect" coords="417,1334,529,1414" key="rec" title_bak="Enregistrement (Shift R)" />
-	<area shape="rect" coords="417,1432,529,1512" key="fwd" title_bak="Accélérer (Shift Z)" />
-	<area shape="rect" coords="417,1529,529,1609" key="next" title_bak="Suivant (Shift S)" />
-	<area shape="rect" coords="174,1465,274,1574" key="play" title_bak="Lecture (Shift W)" />
-	<area shape="rect" coords="299,1465,399,1574" key="stop" title_bak="Stop (Shift X)" />
-	<area shape="rect" coords="198,1334,375,1444" key="home" title_bak="Free (Ctrl)" />
-	<area shape="rect" coords="250,1717,330,1813" key="padUp" title_bak="" />
-	<area shape="rect" coords="330,1814,426,1894" key="padRight" title_bak="" />
-	<area shape="rect" coords="250,1894,330,1990" key="padDown" title_bak="" />
-	<area shape="rect" coords="154,1814,250,1894" key="padLeft" title_bak="" />
-	<area shape="poly" coords="146,1027,245,1126,328,1126,430,1027" key="up" title_bak="Haut (Fléche haut)" />
-	<area shape="poly" coords="146,1312,245,1211,328,1211,436,1312" key="down" title_bak="Bas (Fléche bas)" />
-	<area shape="poly" coords="146,1027,245,1126,245,1211,146,1312" key="left" title_bak="Gauche (Fléche gauche)" />
-	<area shape="poly" coords="430,1027,328,1126,328,1211,436,1312" key="right" title_bak="Droite (Fléche droite)" />
-	<area shape="poly" coords="85,1737,74,1713,74,1685,89,1657,112,1637,139,1630,166,1632,187,1643,150,1666,112,1699" key="start" title_bak="" />
-	<area shape="poly" coords="83,413,75,432,76,463,96,497,129,515,163,514,183,503,156,486,127,464,108,443" key="select" title_bak="" />
-</map>
-<map id="v6-remoteURLmap" name="v6-remoteURLmap">
-	<area shape="rect" coords="0,0,218,215" key="tv" title_bak="AV (²)" />
-	<area shape="rect" coords="436,0,654,215" key="power" title_bak="Alimentation (Echappe)" />
-	<area shape="rect" coords="0,215,218,430" key="1" title_bak="1 (Pavé numérique 1)" />
-	<area shape="rect" coords="218,215,436,430" key="2" title_bak="2 (Pavé numérique 2)" />
-	<area shape="rect" coords="436,215,654,430" key="3" title_bak="3 (Pavé numérique 3)" />
-	<area shape="rect" coords="0,430,218,645" key="4" title_bak="4 (Pavé numérique 4)" />
-	<area shape="rect" coords="218,430,436,645" key="5" title_bak="5 (Pavé numérique 5)" />
-	<area shape="rect" coords="436,430,654,645" key="6" title_bak="6 (Pavé numérique 6)" />
-	<area shape="rect" coords="0,645,218,860" key="7" title_bak="7 (Pavé numérique 7)" />
-	<area shape="rect" coords="218,645,436,860" key="8" title_bak="8 (Pavé numérique 8)" />
-	<area shape="rect" coords="436,645,654,860" key="9" title_bak="9 (Pavé numérique 9)" />
-	<area shape="rect" coords="218,860,436,1075" key="0" title_bak="0 (Pavé numérique 0)" />
-	<area shape="rect" coords="0,1075,218,1290" key="red" title_bak="Rouge (Insertion)" />
-	<area shape="rect" coords="218,1075,436,1290" key="up" title_bak="Haut (Fléche haut)" />
-	<area shape="rect" coords="436,1075,654,1290" key="blue" title_bak="Bleu (Fin)" />
-	<area shape="rect" coords="0,1290,218,1505" key="left" title_bak="Gauche (Fléche gauche)" />
-	<area shape="rect" coords="218,1290,436,1505" key="ok" title_bak="OK (Entrée)" />
-	<area shape="rect" coords="436,1290,654,1505" key="right" title_bak="Droite (Fléche droite)" />
-	<area shape="rect" coords="0,1505,218,1720" key="green" title_bak="Vert (Début)" />
-	<area shape="rect" coords="218,1505,436,1720" key="down" title_bak="Bas (Fléche bas)" />
-	<area shape="rect" coords="436,1505,654,1720" key="yellow" title_bak="Jaune (Suppression)" />
-	<area shape="rect" coords="0,1720,654,1935" key="home" title_bak="Free (Ctrl)" />
-	<area shape="rect" coords="0,1935,218,2150" key="vol_inc" title_bak="Volume Plus (Pavé numérique +)" />
-	<area shape="rect" coords="218,1935,436,2150" key="mute" title_bak="Couper le son (Shift M)" />
-	<area shape="rect" coords="436,1935,654,2150" key="prgm_inc" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
-	<area shape="rect" coords="0,2150,218,2365" key="vol_dec" title_bak="Volume Moins (Pavé numérique -)" />
-	<area shape="rect" coords="218,2150,436,2365" key="rec" title_bak="Enregistrement (Shift R)" />
-	<area shape="rect" coords="436,2150,654,2365" key="prgm_dec" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
-	<area shape="rect" coords="0,2365,218,2580" key="bwd" title_bak="Ralentir (Shift A)" />
-	<area shape="rect" coords="218,2365,436,2580" key="play" title_bak="Lecture (Shift W)" />
-	<area shape="rect" coords="436,2365,654,2580" key="fwd" title_bak="Accélérer (Shift Z)" />
-</map>
+<body style="margin:0;padding:0">
+    <img id="v5-bodyBackground" src="v5-face.jpg" border="0" usemap="#v5-remoteURLmap" style="display:none" />
+    <img id="v6-bodyBackground" src="v6-face.jpg" border="0" usemap="#v6-remoteURLmap" style="display:none" />
+    <img id="v7-bodyBackground" src="v7-face.jpg" border="0" usemap="#v7-remoteURLmap" style="display:none" />
+    <map id="v5-remoteURLmap" name="v5-remoteURLmap">
+        <area shape="circle" coords="290,163,68" key="red" title_bak="Rouge (Insertion)" />
+        <area shape="circle" coords="171,285,68" key="yellow" title_bak="Jaune (Suppression)" />
+        <area shape="circle" coords="409,285,68" key="green" title_bak="Vert (Début)" />
+        <area shape="circle" coords="289,403,68" key="blue" title_bak="Bleu (Fin)" />
+        <area shape="circle" coords="100,598,63" key="power" title_bak="Alimentation (Echappe)" />
+        <area shape="circle" coords="475,598,63" key="tv" title_bak="TV (²)" />
+        <area shape="rect" coords="216,572,363,644" key="list" title_bak="Liste (Menu contextuel)" />
+        <area shape="rect" coords="52,668,161,735" key="1" title_bak="1 (Pavé numérique 1)" />
+        <area shape="rect" coords="173,668,282,735" key="2" title_bak="2 (Pavé numérique 2)" />
+        <area shape="rect" coords="295,668,404,735" key="3" title_bak="3 (Pavé numérique 3)" />
+        <area shape="rect" coords="52,748,161,815" key="4" title_bak="4 (Pavé numérique 4)" />
+        <area shape="rect" coords="173,748,282,815" key="5" title_bak="5 (Pavé numérique 5)" />
+        <area shape="rect" coords="295,748,404,815" key="6" title_bak="6 (Pavé numérique 6)" />
+        <area shape="rect" coords="52,828,161,895" key="7" title_bak="7 (Pavé numérique 7)" />
+        <area shape="rect" coords="173,828,282,895" key="8" title_bak="8 (Pavé numérique 8)" />
+        <area shape="rect" coords="295,828,404,895" key="9" title_bak="9 (Pavé numérique 9)" />
+        <area shape="rect" coords="52,908,161,975" key="back" title_bak="Retour" />
+        <area shape="rect" coords="173,908,282,975" key="0" title_bak="0 (Pavé numérique 0)" />
+        <area shape="rect" coords="295,908,404,975" key="swap" title_bak="Swap (Caps lock)" />
+        <area shape="rect" coords="417,668,526,735" key="info" title_bak="Info (Shift ,)" />
+        <area shape="rect" coords="417,748,526,815" key="mail" title_bak="Message (Shift ;)" />
+        <area shape="rect" coords="417,828,526,895" key="help" title_bak="Aide (Shift :)" />
+        <area shape="rect" coords="417,908,526,975" key="pip" title_bak="PIP (Shift !)" />
+        <area shape="rect" coords="52,1048,128,1155" key="vol_inc" title_bak="Volume Plus (Pavé numérique +)" />
+        <area shape="rect" coords="52,1184,128,1291" key="vol_dec" title_bak="Volume Moins (Pavé numérique -)" />
+        <area shape="rect" coords="447,1048,523,1155" key="prgm_inc" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
+        <area shape="rect" coords="447,1184,523,1291" key="prgm_dec" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
+        <area shape="rect" coords="245,1126,328,1211" key="ok" title_bak="OK (Entrée)" />
+        <area shape="rect" coords="44,1334,156,1414" key="mute" title_bak="Couper le son (Shift M)" />
+        <area shape="rect" coords="44,1432,156,1512" key="bwd" title_bak="Ralentir (Shift A)" />
+        <area shape="rect" coords="44,1529,156,1609" key="prev" title_bak="Précédent (Shift Q)" />
+        <area shape="rect" coords="417,1334,529,1414" key="rec" title_bak="Enregistrement (Shift R)" />
+        <area shape="rect" coords="417,1432,529,1512" key="fwd" title_bak="Accélérer (Shift Z)" />
+        <area shape="rect" coords="417,1529,529,1609" key="next" title_bak="Suivant (Shift S)" />
+        <area shape="rect" coords="174,1465,274,1574" key="play" title_bak="Lecture (Shift W)" />
+        <area shape="rect" coords="299,1465,399,1574" key="stop" title_bak="Stop (Shift X)" />
+        <area shape="rect" coords="198,1334,375,1444" key="home" title_bak="Free (Ctrl)" />
+        <area shape="rect" coords="250,1717,330,1813" key="padUp" title_bak="" />
+        <area shape="rect" coords="330,1814,426,1894" key="padRight" title_bak="" />
+        <area shape="rect" coords="250,1894,330,1990" key="padDown" title_bak="" />
+        <area shape="rect" coords="154,1814,250,1894" key="padLeft" title_bak="" />
+        <area shape="poly" coords="146,1027,245,1126,328,1126,430,1027" key="up" title_bak="Haut (Fléche haut)" />
+        <area shape="poly" coords="146,1312,245,1211,328,1211,436,1312" key="down" title_bak="Bas (Fléche bas)" />
+        <area shape="poly" coords="146,1027,245,1126,245,1211,146,1312" key="left" title_bak="Gauche (Fléche gauche)" />
+        <area shape="poly" coords="430,1027,328,1126,328,1211,436,1312" key="right" title_bak="Droite (Fléche droite)" />
+        <area shape="poly" coords="85,1737,74,1713,74,1685,89,1657,112,1637,139,1630,166,1632,187,1643,150,1666,112,1699" key="start" title_bak="" />
+        <area shape="poly" coords="83,413,75,432,76,463,96,497,129,515,163,514,183,503,156,486,127,464,108,443" key="select" title_bak="" />
+    </map>
+    <map id="v6-remoteURLmap" name="v6-remoteURLmap">
+        <area shape="rect" coords="0,0,218,215" key="tv" title_bak="AV (²)" />
+        <area shape="rect" coords="436,0,654,215" key="power" title_bak="Alimentation (Echappe)" />
+        <area shape="rect" coords="0,215,218,430" key="1" title_bak="1 (Pavé numérique 1)" />
+        <area shape="rect" coords="218,215,436,430" key="2" title_bak="2 (Pavé numérique 2)" />
+        <area shape="rect" coords="436,215,654,430" key="3" title_bak="3 (Pavé numérique 3)" />
+        <area shape="rect" coords="0,430,218,645" key="4" title_bak="4 (Pavé numérique 4)" />
+        <area shape="rect" coords="218,430,436,645" key="5" title_bak="5 (Pavé numérique 5)" />
+        <area shape="rect" coords="436,430,654,645" key="6" title_bak="6 (Pavé numérique 6)" />
+        <area shape="rect" coords="0,645,218,860" key="7" title_bak="7 (Pavé numérique 7)" />
+        <area shape="rect" coords="218,645,436,860" key="8" title_bak="8 (Pavé numérique 8)" />
+        <area shape="rect" coords="436,645,654,860" key="9" title_bak="9 (Pavé numérique 9)" />
+        <area shape="rect" coords="218,860,436,1075" key="0" title_bak="0 (Pavé numérique 0)" />
+        <area shape="rect" coords="0,1075,218,1290" key="red" title_bak="Rouge (Insertion)" />
+        <area shape="rect" coords="218,1075,436,1290" key="up" title_bak="Haut (Fléche haut)" />
+        <area shape="rect" coords="436,1075,654,1290" key="blue" title_bak="Bleu (Fin)" />
+        <area shape="rect" coords="0,1290,218,1505" key="left" title_bak="Gauche (Fléche gauche)" />
+        <area shape="rect" coords="218,1290,436,1505" key="ok" title_bak="OK (Entrée)" />
+        <area shape="rect" coords="436,1290,654,1505" key="right" title_bak="Droite (Fléche droite)" />
+        <area shape="rect" coords="0,1505,218,1720" key="green" title_bak="Vert (Début)" />
+        <area shape="rect" coords="218,1505,436,1720" key="down" title_bak="Bas (Fléche bas)" />
+        <area shape="rect" coords="436,1505,654,1720" key="yellow" title_bak="Jaune (Suppression)" />
+        <area shape="rect" coords="0,1720,654,1935" key="home" title_bak="Free (Ctrl)" />
+        <area shape="rect" coords="0,1935,218,2150" key="vol_inc" title_bak="Volume Plus (Pavé numérique +)" />
+        <area shape="rect" coords="218,1935,436,2150" key="mute" title_bak="Couper le son (Shift M)" />
+        <area shape="rect" coords="436,1935,654,2150" key="prgm_inc" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
+        <area shape="rect" coords="0,2150,218,2365" key="vol_dec" title_bak="Volume Moins (Pavé numérique -)" />
+        <area shape="rect" coords="218,2150,436,2365" key="rec" title_bak="Enregistrement (Shift R)" />
+        <area shape="rect" coords="436,2150,654,2365" key="prgm_dec" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
+        <area shape="rect" coords="0,2365,218,2580" key="bwd" title_bak="Ralentir (Shift A)" />
+        <area shape="rect" coords="218,2365,436,2580" key="play" title_bak="Lecture (Shift W)" />
+        <area shape="rect" coords="436,2365,654,2580" key="fwd" title_bak="Accélérer (Shift Z)" />
+    </map>
+    <map id="v7-remoteURLmap" name="v7-remoteURLmap">
+        <area shape="circle" coords="160,235,100" key="record" title_bak=" " />
+        <area shape="circle" coords="660,235,100" key="power" title_bak="Alimentation (Echappe)" />
+        <area shape="circle" coords="160,505,100" key="1" title_bak="1 (Pavé numérique 1)" />
+        <area shape="circle" coords="410,505,100" key="2" title_bak="2 (Pavé numérique 2)" />
+        <area shape="circle" coords="660,505,100" key="3" title_bak="3 (Pavé numérique 3)" />
+        <area shape="circle" coords="160,705,100" key="4" title_bak="4 (Pavé numérique 4)" />
+        <area shape="circle" coords="410,705,100" key="5" title_bak="5 (Pavé numérique 5)" />
+        <area shape="circle" coords="660,705,100" key="6" title_bak="6 (Pavé numérique 6)" />
+        <area shape="circle" coords="160,905,100" key="7" title_bak="7 (Pavé numérique 7)" />
+        <area shape="circle" coords="410,905,100" key="8" title_bak="8 (Pavé numérique 8)" />
+        <area shape="circle" coords="660,905,100" key="9" title_bak="9 (Pavé numérique 9)" />
+        <area shape="circle" coords="410,1105,100" key="0" title_bak="0 (Pavé numérique 0)" />
+        <area shape="circle" coords="160,1225,100" key="red" title_bak="Retour (Insertion)" />
+        <area shape="circle" coords="660,1225,100" key="blue" title_bak="Rechercher (Fin)" />
+        <area shape="circle" coords="160,1915,100" key="green" title_bak="Menu (Début)" />
+        <area shape="circle" coords="660,1915,100" key="yellow" title_bak="Info (Suppression)" />
+        <area shape="circle" coords="410,1570,100" key="ok" title_bak="Ok (Entrée)" />
+        <area shape="poly" coords="400,1275,300,1300,200,1360,330,1505,370,1475,410,1470,450,1475,485,1505,600,1360,500,1300" key="up" title_bak="Haut (Fléche haut)" />
+        <area shape="poly" coords="700,1570,680,1460,600,1360,485,1505,505,1535,510,1570,505,1600,490,1630,635,1760,680,1670" key="right" title_bak="Droite (Fléche droite)" />
+        <area shape="poly" coords="410,1865,535,1840,635,1760,490,1630,460,1658,405,1670,360,1660,330,1635,225,1800,310,1850" key="down" title_bak="Bas (Fléche bas)" />
+        <area shape="poly" coords="115,1565,135,1690,225,1800,330,1635,315,1605,310,1570,315,1530,330,1505,200,1360,135,1470" key="left" title_bak="Gauche (Fléche gauche)" />
+        <area shape="rect" coords="280,1945,540,2120" key="home" title_bak="Free (Ctrl)" />
+        <area shape="circle" coords="160,2190,80" key="vol_inc" title_bak="Volume Plus (Pavé numérique +)" />
+        <area shape="circle" coords="155,2470,80" key="vol_dec" title_bak="Volume Moins (Pavé numérique -)" />
+        <area shape="circle" coords="660,2190,80" key="prg_inc" title_bak="Programme Plus (Page haut ou * du pavé numérique)" />
+        <area shape="circle" coords="660,2465,80" key="prg_dec" title_bak="Programme Moins (Page bas ou / du pavé numérique)" />
+        <area shape="circle" coords="410,2250,80" key="mute" title_bak="Couper le son (Shift M)" />
+        <area shape="circle" coords="410,2465,80" key="rec" title_bak="Enregistrement (Shift R)" />
+        <area shape="circle" coords="155,2680,80" key="bwd" title_bak="Ralentir (Shift A)" />
+        <area shape="circle" coords="410,2685,80" key="play" title_bak="Lecture (Shift W)" />
+        <area shape="circle" coords="660,2685,80" key="fwd" title_bak="Accélérer (Shift Z)" />
+        <area shape="circle" coords="410,2900,80" key="netflix" title_bak=" " />
+    </map>
 </body>
 </html>
