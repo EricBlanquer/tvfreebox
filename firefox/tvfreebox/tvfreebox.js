@@ -65,7 +65,9 @@
                 }
                 xhr.open('GET', url + '/pub/remote_control?code=' + tvfreebox.code +
                     '&key=' + tvfreebox.key + (longPress ? '&long=true' : '') + (repeat ? '&repeat=' + repeat : '') + '&a=' + Math.random(), true);
-                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                if (tvfreebox.version != 'v5') {
+                    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                }
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState==4) {
                         tvfreebox.canSend = true;
@@ -257,5 +259,5 @@
     }
 }
 catch(e) {
-    console.console.log(e);
+    console.log(e);
 }
