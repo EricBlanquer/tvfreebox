@@ -184,7 +184,7 @@ function getSettings() {
     if (!code) code = '';
     boitier = localStorage['boitier'];
     if (!boitier) boitier = 1;
-    boitier_custom = localStorage['boitier_custom'] || 'http://freebox-player.home';
+    boitier_custom = localStorage['boitier_custom'] || 'http://freebox-player';
     setTitle(localStorage['help']!='0');
     var zoom = localStorage['zoom'];
     if (isNaN(zoom)) zoom = 600;

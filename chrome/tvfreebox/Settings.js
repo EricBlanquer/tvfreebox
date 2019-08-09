@@ -74,7 +74,7 @@ function newConfig(firstConfig) {
     document.getElementById('label').value= firstConfig ? 'principale' : 'nouvelle' + (cptLabel!=1 ? ' #' + cptLabel : '');
     document.getElementById('version6').checked = true;
     document.getElementById('boitier').value= '1';
-    document.getElementById('boitier_custom').value = 'http://freebox-player.home';
+    document.getElementById('boitier_custom').value = 'http://freebox-player';
     document.getElementById('code').value = '';
     document.getElementById('zoom').value = '500';
     document.getElementById('help').checked = true;
@@ -271,7 +271,7 @@ function getSettings() {
     var code = localStorage['code'];
     document.getElementById('code').value = code ? code : '';
     setSelect(document.getElementById('boitier'), localStorage['boitier']);
-    document.getElementById('boitier_custom').value = localStorage['boitier_custom'] || 'http://freebox-player.home';
+    document.getElementById('boitier_custom').value = localStorage['boitier_custom'] || 'http://freebox-player';
     var zoom = localStorage['zoom'];
     if (isNaN(zoom)) zoom = 600;
     document.getElementById('zoom').value = zoom;

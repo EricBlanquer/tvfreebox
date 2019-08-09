@@ -115,7 +115,7 @@
     getPref('label', 'principale');
     getPref('version', 'v7');
     getPref('boitier', '0');
-    getPref('boitier_custom', 'http://freebox-player.home');
+    getPref('boitier_custom', 'http://freebox-player');
     getPref('code', '');
     getPref('zoom', '600');
     getPref('help', true);

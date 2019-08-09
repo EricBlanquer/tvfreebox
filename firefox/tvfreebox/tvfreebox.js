@@ -65,9 +65,6 @@
                 }
                 xhr.open('GET', url + '/pub/remote_control?code=' + tvfreebox.code +
                     '&key=' + tvfreebox.key + (longPress ? '&long=true' : '') + (repeat ? '&repeat=' + repeat : '') + '&a=' + Math.random(), true);
-                if (tvfreebox.version != 'v5') {
-                    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-                }
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState==4) {
                         tvfreebox.canSend = true;
@@ -226,7 +223,7 @@
     getPref('label', 'principale');
     getPref('version', 'v7');
     getPref('boitier', '0');
-    getPref('boitier_custom', 'http://freebox-player.home');
+    getPref('boitier_custom', 'http://freebox-player');
     getPref('code', '');
     getPref('zoom', '600');
     getPref('help', true);
