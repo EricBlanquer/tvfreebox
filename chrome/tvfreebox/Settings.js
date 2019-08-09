@@ -3,6 +3,7 @@ var zoomTimeout;
 var zoomTimeoutDelay = 500;
 
 function checkOptions() {
+    console.log('checkOptions');
     resetOptionsMessages();
     var boitier = document.getElementById('boitier').value;
     var code = document.getElementById('code').value;
@@ -17,28 +18,37 @@ function checkOptions() {
         url = 'http://hd' + boitier + '.freebox.fr';
     }
     xhr.open('GET', url + '/pub/remote_control?code=' + code + '&key=' + key + '&a=' + Math.random(), true);
+    var t0 = new Date().getTime();
     xhr.onreadystatechange = function() {
-        if (xhr.readyState==4) {
-            clearTimeout(checkOptTimeout);
-            if (xhr.status!=0) resetOptionsMessages();
-            if (xhr.status==200) {
+        var t1 = new Date().getTime();
+        console.log('onreadystatechange', xhr, t1 - t0);
+        if (xhr.readyState == 4) {
+            if (xhr.status != 0) {
+                resetOptionsMessages();
+            }
+            if (xhr.status == 200) {
                 document.getElementById('opt_mess_ok').style.display = '';
-            } else if (xhr.status==403) {
+            }
+            else if (xhr.status == 403) {
                 document.getElementById('opt_mess_code').style.display = '';
-            } else if (xhr.status==404) {
+            }
+            else if (xhr.status == 404) {
                 document.getElementById('opt_mess_version').style.display = '';
             }
         }
     };
-    checkOptTimeout = setTimeout(checkOptionsFailed, 3000);
+    checkOptTimeout = setTimeout(checkOptionsFailed, 1500);
     xhr.send();
 }
 
 function checkOptionsFailed() {
+    console.log('checkOptionsFailed');
     document.getElementById('opt_mess_timeout').style.display = '';
 }
 
 function resetOptionsMessages() {
+    console.log('resetOptionsMessages');
+    clearTimeout(checkOptTimeout);
     document.getElementById('opt_mess_ok').style.display = 'none';
     document.getElementById('opt_mess_code').style.display = 'none';
     document.getElementById('opt_mess_version').style.display = 'none';
@@ -46,6 +56,7 @@ function resetOptionsMessages() {
 }
 
 function newConfig(firstConfig) {
+    console.log('newConfig', firstConfig);
     var configs = getConfigs();
     var label = document.getElementById('label').value;
     var version = getVersion();
@@ -84,6 +95,7 @@ function newConfig(firstConfig) {
 }
 
 function removeConfig() {
+    console.log('removeConfig');
     var configs = getConfigs();
     if (configs && configs.length) {
         document.getElementById('label').value= configs[configs.length-1].label;
@@ -104,6 +116,7 @@ function removeConfig() {
 }
 
 function setConfigsInPrefs(configs) {
+    console.log('setConfigsInPrefs', configs);
     var txtConfig = [];
     for(var i=0; i<configs.length; i++) {
         if (configs[i]!=null) {
@@ -114,6 +127,7 @@ function setConfigsInPrefs(configs) {
 }
 
 function serializeConfig(config, id) {
+    console.log('serializeConfig', config, id);
     var txt = '{';
     txt += '\'configid\':\''+ id;
     txt += '\',\'label\':\''+ config.label;
@@ -130,6 +144,7 @@ function serializeConfig(config, id) {
 }
 
 function populateLabels(select) {
+    console.log('populateLabels', select);
     var configs = getConfigs();
     while(select.childNodes.length) select.removeChild(select.lastChild);
     var option = document.createElement('option');
@@ -163,6 +178,7 @@ function populateLabels(select) {
 }
 
 function changeConfig(select) {
+    console.log('changeConfig', select);
     var option = select.children[select.selectedIndex];
     var config;
     try {
@@ -205,6 +221,7 @@ function changeConfig(select) {
 }
 
 function getConfigs(txtConfig) {
+    console.log('getConfigs', txtConfig);
     var configs = false;
     try {
         if (txtConfig) {
@@ -228,6 +245,7 @@ function getConfigs(txtConfig) {
 }
 
 function getVersion() {
+    console.log('getVersion');
     return document.getElementById('version5').checked 
         ? 'v5' 
         : document.getElementById('version6').checked
@@ -236,6 +254,7 @@ function getVersion() {
 }
 
 function setSettings() {
+    console.log('setSettings');
     var version = getVersion();
     localStorage['version'] = version;
     localStorage['code']= document.getElementById('code').value;
@@ -258,6 +277,7 @@ function setSettings() {
 }
 
 function getSettings() {
+    console.log('getSettings');
     var version = localStorage['version'];
     if (version == 'v5') {
         document.getElementById('version5').checked = 'checked';
@@ -290,6 +310,7 @@ function getSettings() {
 }
 
 function setSelect(select, value) {
+    console.log('setSelect', value);
     for(var i = 0; i < select.children.length; i++) {
         var child = select.children[i];
         if (child.value == value) {
@@ -300,6 +321,7 @@ function setSelect(select, value) {
 }
 
 function init() {
+    console.log('init');
     getSettings();
     document.getElementById('label').onchange = setSettings;
     document.getElementById('version5').onchange = setSettings;

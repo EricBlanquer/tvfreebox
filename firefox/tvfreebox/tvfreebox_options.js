@@ -25,21 +25,23 @@
             console.log(url);
             xhr.open('GET', url, true);
             xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+            var t0 = new Date().getTime();
             xhr.onreadystatechange = function() {
+                var t1 = new Date().getTime();
+                console.log('onreadystatechange', xhr, t1 - t0);
                 if (xhr.readyState == 4) {
-                    console.log('checkOptions xhr.status ' + xhr.status, xhr);
                     tvfreebox.resetOptionsMessages();
-                    if (xhr.status==200) {
+                    if (xhr.status == 200) {
                         document.getElementById('tvfreebox_opt_mess_ok').style.display = '';
                     }
-                    else if ((xhr.status==0 || xhr.status==500) && tvfreebox.checkOptTimeout) {
+                    else if ((xhr.status == 0 || xhr.status == 500) && tvfreebox.checkOptTimeout) {
                         document.getElementById('tvfreebox_opt_mess_ok').style.display = '';
                         document.getElementById('tvfreebox_opt_mess_ok2').style.display = '';
                     }
-                    else if (xhr.status==403) {
+                    else if (xhr.status == 403) {
                         document.getElementById('tvfreebox_opt_mess_code').style.display = '';
                     }
-                    else if (xhr.status==404) {
+                    else if (xhr.status == 404) {
                         document.getElementById('tvfreebox_opt_mess_version').style.display = '';
                     }
                     if (tvfreebox.checkOptTimeout) {
@@ -48,7 +50,7 @@
                     }
                 }
             };
-            tvfreebox.checkOptTimeout = setTimeout(tvfreebox.checkOptionsFailed, 3000);
+            tvfreebox.checkOptTimeout = setTimeout(tvfreebox.checkOptionsFailed, 1500);
             xhr.send();
         },
         checkOptionsFailed: function() {
@@ -57,8 +59,9 @@
             document.getElementById('tvfreebox_opt_mess_timeout').style.display = '';
         },
         resetOptionsMessages: function(forced) {
-            console.log('resetOptionsMessages');
+            console.log('resetOptionsMessages', forced);
             if (forced || tvfreebox.checkOptTimeout) {
+                clearTimeout(tvfreebox.checkOptTimeout);
                 document.getElementById('tvfreebox_opt_mess_ok').style.display = 'none';
                 document.getElementById('tvfreebox_opt_mess_ok2').style.display = 'none';
                 document.getElementById('tvfreebox_opt_mess_code').style.display = 'none';
