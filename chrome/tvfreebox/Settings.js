@@ -101,6 +101,7 @@ function removeConfig() {
         document.getElementById('label').value= configs[configs.length-1].label;
         if (configs[configs.length-1].version=='v5') document.getElementById('version5').checked = 'checked';
         else if (configs[configs.length-1].version=='v6') document.getElementById('version6').checked = 'checked';
+        else if (configs[configs.length-1].version=='v7-dark') document.getElementById('version7-dark').checked = 'checked';
         else document.getElementById('version7').checked = 'checked';
         document.getElementById('boitier').value = configs[configs.length-1].boitier;
         document.getElementById('boitier_custom').value= configs[configs.length-1].boitier_custom;
@@ -207,6 +208,7 @@ function changeConfig(select) {
         document.getElementById('label').value= config[0].label;
         if (config[0].version=='v5') document.getElementById('version5').checked = 'checked';
         else if (config[0].version=='v6') document.getElementById('version6').checked = 'checked';
+        else if (config[0].version=='v7-dark') document.getElementById('version7-dark').checked = 'checked';
         else document.getElementById('version7').checked = 'checked';
         document.getElementById('boitier').value = config[0].boitier;
         document.getElementById('boitier_custom').value= config[0].boitier_custom;
@@ -250,6 +252,8 @@ function getVersion() {
         ? 'v5' 
         : document.getElementById('version6').checked
         ? 'v6'
+        : document.getElementById('version7-dark').checked
+        ? 'v7-dark'
         : 'v7';
 }
 
@@ -284,6 +288,9 @@ function getSettings() {
     }
     else if (version == 'v6') {
         document.getElementById('version6').checked = 'checked';
+    }
+    else if (version == 'v7-dark') {
+        document.getElementById('version7-dark').checked = 'checked';
     }
     else {
         document.getElementById('version7').checked = 'checked';
@@ -327,6 +334,7 @@ function init() {
     document.getElementById('version5').onchange = setSettings;
     document.getElementById('version6').onchange = setSettings;
     document.getElementById('version7').onchange = setSettings;
+    document.getElementById('version7-dark').onchange = setSettings;
     document.getElementById('boitier').onchange = setSettings;
     document.getElementById('boitier_custom').onchange = setSettings;
     document.getElementById('code').onchange = setSettings;
@@ -335,9 +343,6 @@ function init() {
     document.getElementById('zoom').onchange = function(){if (this.value<200) this.value=200;setSettings();};
     document.getElementById('inpopup').onchange = setSettings;
     document.getElementById('labels').onchange = function(){ changeConfig(this); };
-    document.getElementById('img_version7').onclick = function(){document.getElementById('version7').checked='checked';};
-    document.getElementById('img_version6').onclick = function(){document.getElementById('version6').checked='checked';};
-    document.getElementById('img_version5').onclick = function(){document.getElementById('version5').checked='checked';};
     document.getElementById('btn_tester').onclick = checkOptions;
     document.getElementById('zoom').onclick = function(){ this.select();};
     document.getElementById('btn_newconfig').onclick = function(){newConfig();};

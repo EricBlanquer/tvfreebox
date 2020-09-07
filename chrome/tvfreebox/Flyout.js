@@ -169,16 +169,25 @@ function getSettings() {
         document.getElementById('v5-bodyBackground').style.display = '';
         document.getElementById('v6-bodyBackground').style.display = 'none';
         document.getElementById('v7-bodyBackground').style.display = 'none';
+        document.getElementById('v7-dark-bodyBackground').style.display = 'none';
     } 
     else if (version == 'v6') {
         document.getElementById('v5-bodyBackground').style.display = 'none';
         document.getElementById('v6-bodyBackground').style.display = '';
         document.getElementById('v7-bodyBackground').style.display = 'none';
+        document.getElementById('v7-dark-bodyBackground').style.display = 'none';
+    }
+    else if (version == 'v7-dark') {
+        document.getElementById('v5-bodyBackground').style.display = 'none';
+        document.getElementById('v6-bodyBackground').style.display = 'none';
+        document.getElementById('v7-bodyBackground').style.display = 'none';
+        document.getElementById('v7-dark-bodyBackground').style.display = '';
     }
     else {
         document.getElementById('v5-bodyBackground').style.display = 'none';
         document.getElementById('v6-bodyBackground').style.display = 'none';
         document.getElementById('v7-bodyBackground').style.display = '';
+        document.getElementById('v7-dark-bodyBackground').style.display = 'none';
     }
     code = localStorage['code'];
     if (!code) code = '';

@@ -57,7 +57,7 @@
             if (tvfreebox.key && tvfreebox.canSend && tvfreebox.code) {
                 var xhr = new XMLHttpRequest();
                 var url;
-                if (tvfreebox.version == 'v7') {
+                if (tvfreebox.version == 'v7' || tvfreebox.version == 'v7-dark') {
                     url = tvfreebox.boitier_custom;
                 }
                 else {
@@ -196,18 +196,28 @@
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v5').style.display = '';
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v6').style.display = 'none';
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v7').style.display = 'none';
+                    document.getElementById('tvfreebox_tvfreebox-popup1-image-v7-dark').style.display = 'none';
                     browser.browserAction.setIcon({path: "skin/v5/icon24.png"});
                 }
                 else if (tvfreebox.version == 'v6') {
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v5').style.display = 'none';
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v6').style.display = '';
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v7').style.display = 'none';
+                    document.getElementById('tvfreebox_tvfreebox-popup1-image-v7-dark').style.display = 'none';
                     browser.browserAction.setIcon({path: "skin/v6/icon24.png"});
+                }
+                else if (tvfreebox.version == 'v7-dark') {
+                    document.getElementById('tvfreebox_tvfreebox-popup1-image-v5').style.display = 'none';
+                    document.getElementById('tvfreebox_tvfreebox-popup1-image-v6').style.display = 'none';
+                    document.getElementById('tvfreebox_tvfreebox-popup1-image-v7').style.display = 'none';
+                    document.getElementById('tvfreebox_tvfreebox-popup1-image-v7-dark').style.display = '';
+                    browser.browserAction.setIcon({path: "skin/v7-dark/icon24.png"});
                 }
                 else {
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v5').style.display = 'none';
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v6').style.display = 'none';
                     document.getElementById('tvfreebox_tvfreebox-popup1-image-v7').style.display = '';
+                    document.getElementById('tvfreebox_tvfreebox-popup1-image-v7-dark').style.display = 'none';
                     browser.browserAction.setIcon({path: "skin/v7/icon24.png"});
                 }
                 tvfreebox.setTitle(tvfreebox.help);

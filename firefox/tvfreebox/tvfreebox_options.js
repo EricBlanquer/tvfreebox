@@ -75,6 +75,7 @@
                 document.getElementById('tvfreebox_version_v5').checked = tvfreebox.version == 'v5';
                 document.getElementById('tvfreebox_version_v6').checked = tvfreebox.version == 'v6';
                 document.getElementById('tvfreebox_version_v7').checked = tvfreebox.version == 'v7';
+                document.getElementById('tvfreebox_version_v7-dark').checked = tvfreebox.version == 'v7-dark';
                 document.getElementById('tvfreebox_boitier').value = tvfreebox.boitier;
                 document.getElementById('tvfreebox_boitier_custom').value = tvfreebox.boitier_custom;
                 document.getElementById('tvfreebox_code').value = tvfreebox.code;
@@ -83,6 +84,7 @@
                 document.getElementById('tvfreebox_version_v5').onclick = tvfreebox.savePrefs;
                 document.getElementById('tvfreebox_version_v6').onclick = tvfreebox.savePrefs;
                 document.getElementById('tvfreebox_version_v7').onclick = tvfreebox.savePrefs;
+                document.getElementById('tvfreebox_version_v7-dark').onclick = tvfreebox.savePrefs;
                 document.getElementById('tvfreebox_boitier').onchange = tvfreebox.savePrefs;
                 document.getElementById('tvfreebox_boitier_custom').onchange = tvfreebox.savePrefs;
                 document.getElementById('tvfreebox_code').onchange = tvfreebox.savePrefs;
@@ -95,7 +97,10 @@
         },
         savePrefs: function() {
             console.log('savePrefs');
-            setPref('version', document.getElementById('tvfreebox_version_v5').checked ? 'v5' : document.getElementById('tvfreebox_version_v6').checked ? 'v6' : 'v7');
+            setPref('version', document.getElementById('tvfreebox_version_v5').checked ? 'v5'
+                : document.getElementById('tvfreebox_version_v6').checked ? 'v6'
+                : document.getElementById('tvfreebox_version_v7-dark').checked ? 'v7-dark'
+                : 'v7');
             var boitier = document.getElementById('tvfreebox_boitier').value;
             setPref('boitier', boitier);
             setPref('boitier_custom', document.getElementById('tvfreebox_boitier_custom').value);
